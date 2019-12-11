@@ -8,6 +8,7 @@ public class GameManager : MonobehaviourSingleton<GameManager>
     public float time;
     public Car car;
     public GameObject carGO;
+    public bool gameEnded;
     // Start is called before the first frame update
     void OnEnable()
     {
@@ -21,6 +22,12 @@ public class GameManager : MonobehaviourSingleton<GameManager>
         if (car.gameStarted)
         {
             time -= Time.deltaTime;
+            if (time<=0)
+            {
+                time = 0;
+                car.gameStarted = false;
+                gameEnded = true;
+            }
         }
     }
 
